@@ -1,13 +1,10 @@
 ---
-# user vars
-git_shell: /usr/bin/git-shell
-git_dir: /var/lib/git
 git_user: git
-git_user_password: '!'
-
-git_enablerepo: ""
-git_packages:
-  - git
+git_user_password: "!"
+git_shell: /usr/bin/git-shell
+git_dir: /home/git
 
 git_keys: []
-git_repos: []
+
+git_repos:
+  - https://github.com/Vocovo/systems-ansible

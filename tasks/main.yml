@@ -1,19 +1,34 @@
 ---
-- include_tasks: "{{ item }}"
-  loop: "{{ q('first_found', params, errors='ignore') }}"
-  vars:
-    params:
-      files:
-        - "setup-{{ ansible_os_family }}.yml"
-      paths:
-        - 'tasks'
-      skip: true
+---
+- name: Ensure git is installed
+  package:
+    name: "git"
+    state: present
 
-- include_tasks: user.yml
+- name: Create git user
+  user:
+    name: "{{ git_user }}"
+    generate_ssh_key: true
+    state: present
+    comment: "Git Server User"
+    shell: "{{ git_shell }}"
+    password: "{{ git_user_password }}"
+    home: "{{ git_dir }}"
 
-- include_tasks: commands.yml
+- name: Add authorized_keys to git user
+  authorized_key:
+    user: "{{ git_user }}"
+    key: "{{ git_keys | join('\n') }}"
+    exclusive: true
+  when: git_keys | length >= 1
 
-- include_tasks: repo.yml
+- name: "Clone {{ git_repo }}"
+  become: yes
+  become_user: git
+  command:
+    cmd: "git clone {{ git_repo }}"
+    chdir: "{{ git_dir }}"
+    creates: "{{ git_dir }}/{{ git_repo | basename | splitext | first }}/config"
   loop: "{{ git_repos }}"
   loop_control:
     loop_var: git_repo
