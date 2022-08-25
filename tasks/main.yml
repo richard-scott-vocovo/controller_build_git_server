@@ -24,13 +24,13 @@
     exclusive: true
   when: git_keys | length >= 1
 
-- name: "Clone {{ git_repo }}"
+- name: "Clone GIT Repos"
   become: true
   become_user: git
   command:
     cmd: "git clone {{ git_repo }}"
     chdir: "{{ git_dir }}"
-    creates: "{{ git_dir }}/{{ git_repo | basename | splitext | first }}/config"
+    creates: "{{ git_dir }}/{{ git_repo | basename | splitext | first }}"
   loop: "{{ git_repos }}"
   loop_control:
     loop_var: git_repo
