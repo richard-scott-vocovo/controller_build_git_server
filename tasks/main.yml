@@ -1,11 +1,12 @@
 ---
----
 - name: Ensure git is installed
+  become: true
   package:
     name: "git"
     state: present
 
 - name: Create git user
+  become: true
   user:
     name: "{{ git_user }}"
     generate_ssh_key: true
@@ -16,6 +17,7 @@
     home: "{{ git_dir }}"
 
 - name: Add authorized_keys to git user
+  become: true
   authorized_key:
     user: "{{ git_user }}"
     key: "{{ git_keys | join('\n') }}"
@@ -23,7 +25,7 @@
   when: git_keys | length >= 1
 
 - name: "Clone {{ git_repo }}"
-  become: yes
+  become: true
   become_user: git
   command:
     cmd: "git clone {{ git_repo }}"
