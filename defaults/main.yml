@@ -4,7 +4,10 @@ git_user_password: "!"
 git_shell: /usr/bin/git-shell
 git_dir: /home/git
 
-git_keys: []
+git_keys:
+  - ssh-rsa
+    AAAAB3NzaC1yc2EAAAADAQABAAABgQDQCTFPW3UlHZKaTn+oIQcJu1MVavXb69AAi03rXomwM2JKM26DT3bNON913bdkWYtKG5cW9gEx8lNSJhGnFX9v4yicMaSY4BDTb2qSvvJlGNNVJaf+hHOfIKxvDTWhDsaOpOnx8KGCVbtmI9TIYw0ZlG7GwA3a+nuMEnWkcDpspRmOZ4WDjW4jb48ff5CloJagPUi2r4U+Z5xNDxUKDnY2Ki6tIjpLz/cCR1xweDXXdJMmm4ShQcDW3mY1GR+9o8Y/nsw3kIbvg52jWrx+ZkcPiy14MWnVp5aOMHVwIRIkmB2UHWeEkc0JLjnHdKsbfgg3sb5KQcdC4hA9rkL/flhPKGImJ9Z6ym77ViPQRKbnle6Os+y5OP8xW5FrjA/6m2XWwyPrRAe7JwlBWU+qHds4ko+k2DVXAIgJ+xB3lCC/mS5PA9U63VvDgUkTjHH7IVxrFx1R/sD0bCS6Wk96VZETwu6vU98JYMfvoxzL+SS4A9r55TSE+O0oWozJPXjaNy0=
+    richard.scott@Richards-MBP.home.lan
 
 git_repos:
-  - https://github.com/Vocovo/systems-ansible
+  - https://github.com/daveol/ansible-role-git_server.git

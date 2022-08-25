@@ -27,10 +27,9 @@
 - name: "Clone GIT Repos"
   become: true
   become_user: git
-  command:
-    cmd: "git clone {{ git_repo }}"
-    chdir: "{{ git_dir }}"
-    creates: "{{ git_dir }}/{{ git_repo | basename | splitext | first }}"
+  ansible.builtin.git:
+    repo: "{{ git_repo }}"
+    dest: "{{ git_dir }}/{{ git_repo | basename | splitext | first }}.git"
   loop: "{{ git_repos }}"
   loop_control:
     loop_var: git_repo
